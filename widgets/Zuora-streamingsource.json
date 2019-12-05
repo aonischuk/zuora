@@ -1,0 +1,189 @@
+{
+  "metadata": {
+    "spec-version": "1.5"
+  },
+  "configuration-groups": [
+    {
+      "label": "Basic",
+      "properties": [
+        {
+          "name": "referenceName",
+          "label": "Reference Name",
+          "widget-type": "textbox"
+        },
+        {
+          "name": "authType",
+          "label": "Authentication Type",
+          "widget-type": "radio-group",
+          "widget-attributes": {
+            "layout": "inline",
+            "default": "basic",
+            "options": [
+              {
+                "id": "basic",
+                "label": "Basic"
+              },
+              {
+                "id": "oauth2",
+                "label": "OAuth2"
+              }
+            ]
+          }
+        },
+        {
+          "name": "authUsername",
+          "label": "Username",
+          "widget-type": "textbox"
+        },
+        {
+          "name": "authPassword",
+          "label": "Password",
+          "widget-type": "password"
+        },
+        {
+          "name": "authClientId",
+          "label": "Client ID",
+          "widget-type": "securekey-text",
+          "widget-attributes": {
+            "placeholder": "OAuth2 Client ID"
+          }
+        },
+        {
+          "name": "authClientSecret",
+          "label": "Client Secret",
+          "widget-type": "securekey-text",
+          "widget-attributes": {
+            "placeholder": "OAuth2 Client Secret"
+          }
+        },
+        {
+          "name": "apiEndpoint",
+          "label": "REST API Endpoint",
+          "widget-type": "select",
+          "widget-attributes": {
+            "values": [
+              "https://rest.zuora.com",
+              "https://rest.eu.zuora.com",
+              "https://rest.apisandbox.zuora.com",
+              "https://rest.sandbox.eu.zuora.com",
+              "https://rest.pt1.zuora.com"
+            ],
+            "default": "https://rest.zuora.com"
+          }
+        },
+        {
+          "name": "baseObjects",
+          "label": "Object(s) to pull",
+          "widget-type": "multi-select",
+          "widget-attributes": {
+            "options": [
+              {
+                "id": "Products",
+                "label": "Products"
+              },
+              {
+                "id": "Refunds",
+                "label": "Refunds"
+              },
+              {
+                "id": "PaymentRun",
+                "label": "PaymentRun"
+              },
+              {
+                "id": "Payments",
+                "label": "Payments"
+              },
+              {
+                "id": "Orders",
+                "label": "Orders"
+              },
+              {
+                "id": "Entities",
+                "label": "Entities"
+              },
+              {
+                "id": "DebitMemos",
+                "label": "DebitMemos"
+              },
+              {
+                "id": "CreditMemos",
+                "label": "CreditMemos"
+              },
+              {
+                "id": "BillingDocuments",
+                "label": "BillingDocuments"
+              }
+            ],
+            "delimiter": ","
+          }
+        },
+        {
+          "name": "advObjects",
+          "label": "Advanced Objects",
+          "widget-type": "multi-select",
+          "widget-attributes": {
+            "options": [
+            ],
+            "delimiter": ","
+          }
+        },
+        {
+          "widget-type": "select",
+          "label": "Pull Frequency",
+          "name": "pullFrequency",
+          "widget-attributes": {
+            "values": [
+              "15 min",
+              "30 min",
+              "1 hour",
+              "4 hour",
+              "8 hour"
+            ],
+            "default": "GET"
+          }
+        }
+      ]
+    }
+  ],
+  "outputs": [
+    {
+      "widget-type": "non-editable-schema-editor",
+      "schema": {
+      }
+    }
+  ],
+  "filters": [
+    {
+      "name": "AuthTypeBasicFilter",
+      "condition": {
+        "expression": "authType == 'basic'"
+      },
+      "show": [
+        {
+          "name": "authUserName",
+          "type": "property"
+        },
+        {
+          "name": "authPassword",
+          "type": "property"
+        }
+      ]
+    },
+    {
+      "name": "AuthTypeAdvFilter",
+      "condition": {
+        "expression": "authType == 'oauth2'"
+      },
+      "show": [
+        {
+          "name": "authClientId",
+          "type": "property"
+        },
+        {
+          "name": "authClientSecret",
+          "type": "property"
+        }
+      ]
+    }
+  ]
+}
